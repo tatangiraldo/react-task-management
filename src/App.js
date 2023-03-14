@@ -4,6 +4,9 @@ import Ejemplo1 from './hooks/Ejemplo1';
 import Ejemplo2 from './hooks/Ejemplo2';
 import ComponentWithContext from './hooks/Ejemplo3';
 import ComponentWithChildren from './hooks/Ejemplo4';
+import Clock from './hooks/lifeCycle/Clock';
+import ClockF from './hooks/lifeCycle/ClockF';
+
 //import ContacListComponent from './components/container/ContactListComponent';
 //import Greeting from './components/pure/greeting';
 //import GreetingF from './components/pure/greetingF';
@@ -29,12 +32,14 @@ function App() {
         {/* <ComponentWithContext/> */}
 
         
-        <ComponentWithChildren name="Elijah">
-          {/* All this content will be props.children */}
+        {/* <ComponentWithChildren name="Elijah">
+          {/* All this content will be props.children 
           <h3>
             Contenido del  props.children
           </h3>
-        </ComponentWithChildren>        
+        </ComponentWithChildren>         */}
+
+        <ClockF/>
       </header>
     </div>
   );
