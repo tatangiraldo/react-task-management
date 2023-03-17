@@ -8,35 +8,35 @@ import PropTypes from 'prop-types';
 class LifeCycleExample extends Component {
     constructor(props) {
         super(props);
-        console.log('when the constructor component is istanced')
+        console.log('constructor component is istanced')
     }
 
     componentWillMount() {
-        console.log('Before component build');
+        console.log('componentWillMount: Before component build');
     }
 
     componentDidMount() {
-        console.log('Component is built but not appear yet ')
+        console.log('componentDidMount: Component is built but not appear yet ')
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('If the component receibe other props');
+        console.log('componentWillReceiveProps: If the component receibe other props');
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('Manage if the component should be updated or not, returs true or false ');
+        console.log('shouldComponentUpdate: Manage if the component should be updated or not, returs true or false ');
     }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log('Just before component will be updated');
+        console.log('componentWillUpdate: Just before component will be updated');
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('Just before component is updated');
+        console.log('componentDidUpdate: Just before component is updated');
     }
 
     componentWillUnmount() {
-        console.log('Just before component will be dissapear');
+        console.log('componentWillUnmount: Just before component will be dissapear');
     }
 
     render() {

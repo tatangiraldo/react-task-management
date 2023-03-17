@@ -1,6 +1,7 @@
  import React, {useEffect} from 'react';
  import PropTypes from 'prop-types';
 import { TaskModel } from '../../models/task.model';
+import { LEVELS } from '../enums/levels.enums'
  
  
  const TaskComponent = ({task}) => {
@@ -12,6 +13,50 @@ import { TaskModel } from '../../models/task.model';
             };
         }, [task]);
 
+        /**
+         * Function that return a Badge depending of task's level
+         */
+        function taskLevelBadge(){
+            switch (task.level) {
+                case LEVELS.Normal:
+                    return(
+                        <h6 className='mb-o'>
+                            <span className='badge bg-primary'>
+                                {task.level}
+                            </span>
+                        </h6>
+                    ) 
+                case LEVELS.Urgent:
+                    return(
+                        <h6 className='mb-o'>
+                            <span className='badge bg-warning'>
+                                {task.level}
+                            </span>
+                        </h6>
+                    )  
+                case LEVELS.Blocking:
+                    return(
+                        <h6 className='mb-o'>
+                            <span className='badge bg-danger'>
+                                {task.level}
+                            </span>
+                        </h6>
+                    )            
+                default:
+                    break;
+            }
+        }
+
+        /**
+         * 
+         */
+        function taskInconManagement(){
+            if(task.completed){
+                return (<i className="bi bi-toggle-on" style={{color: 'green'}}></i>) 
+            }
+            return (<i className="bi bi-toggle-off"  style={{color: 'grey'}}></i>)
+        }
+
     return (
         <tr className='fw-normal'>
             <th>
@@ -21,20 +66,17 @@ import { TaskModel } from '../../models/task.model';
                 <span > {task.description} </span>
             </td>
             <td className='align-middle'>
-                {/**TODO: sustituir por un badge */}
-                <span > {task.level} </span>
+                <span >
+                    {taskLevelBadge()}
+                </span>
             </td>
             <td className='align-middle'>
-                {/**TODO: sustituir por iconos */}
-                <span > {task.completed} </span>
+                <span > 
+                    {taskInconManagement()}
+                    <i className="bi bi-trash" style={{color: 'tomato'}}></i>
+                </span> 
             </td>
         </tr>
-        // <div>
-        //     <h2>{ task.name }</h2>
-        //     <h3>{ task.description }</h3>
-        //     <h4>{ task.level }</h4> 
-        //     <h5> { task.completed ? 'Completed' : 'Pending' }  </h5>
-        // </div>
     );
  };
  

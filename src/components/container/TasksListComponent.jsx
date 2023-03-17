@@ -2,17 +2,34 @@ import React, {useState, useEffect} from 'react'
 import { LEVELS } from '../enums/levels.enums'
 import { TaskModel } from '../../models/task.model'
 import TaskComponent from '../pure/taskComponent'
+import TaskForm from '../pure/forms/taskForm';
 
-function TasksListComponent(props) {
+function TasksListComponent() {
 
     const defaultTask = new TaskModel(
         'Example', 
         'Default Desc',
-        false,
+        true,
         LEVELS.Normal
-        )
+        );
+    
+    const defaultTask2 = new TaskModel(
+        'Example2', 
+        'Default  2',
+        false,
+        LEVELS.Urgent
+        );
+    
+    const defaultTask3 = new TaskModel(
+        'Example3', 
+        'Default  3',
+        false,
+        LEVELS.Blocking
+        );
+
+
     //status of component
-    const [tasks, setTasks] = useState(defaultTask);
+    const [tasks, setTasks] = useState([defaultTask, defaultTask2, defaultTask3]);
     const [loading, setLoading] = useState(true);
 
     //cycle life component control
@@ -26,7 +43,7 @@ function TasksListComponent(props) {
         
 
     const changeCompleted = (id) => {
-        consolg
+        //consolg
     }
         
     return (
@@ -47,13 +64,23 @@ function TasksListComponent(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <TaskComponent task={defaultTask}  />
+                                {
+                                    tasks.map( (task, index) => {
+                                        return (
+                                            <TaskComponent 
+                                                key={index} 
+                                                task={task}   
+                                            />
+                                        )
+                                    })
+                                }
+                            
                             </tbody>
                         </table>
                     </div>
-                </div>
-                
+                </div>                
             </div>
+            <TaskForm/>
         </div>
     )
 }

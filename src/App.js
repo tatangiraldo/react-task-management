@@ -12,10 +12,21 @@ import ClockF from './hooks/lifeCycle/ClockF';*/
 //import GreetingF from './components/pure/greetingF';
 import TasksListComponent from './components/container/TasksListComponent';
 
+//este se importò con llaves, para ejemplo de 
+//importacion de varias funciones dentro de un component
+//si en el component 'father.jsx' se le pone export default,
+//se deberá importar sin {}
+import {Father} from './components/container/father';
+//import LifeCycleExample from './components/pure/lifeCycleExample';
+
 function App() {
   return (
     <div className="App">
-      <TasksListComponent/>
+
+      <Father/>
+
+      {/* <TasksListComponent/> */}
+      {/* <LifeCycleExample/> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" /> */}
         {/*comment*/} 
