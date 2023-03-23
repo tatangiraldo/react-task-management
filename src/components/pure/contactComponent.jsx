@@ -1,14 +1,37 @@
 import PropTypes from 'prop-types';
 import { ContactModel } from '../../models/contact.model';
 
-const ContactComponent = ({contact}) => {
+const ContactComponent = ({contact, setSatus, remove}) => {
+
+    function statusBadge(){
+        switch (contact.conected) {
+            case true:
+                return (<i onClick={() => setSatus(contact)} className="bi bi-toggle-on task-action" style={{color: 'green'}}></i>)
+            default:
+                return (<i onClick={() => setSatus(contact)} className="bi bi-toggle-off task-action" style={{color: 'grey'}}></i>)
+        }
+    }
+
     return (
-        <div>
-            <h2>{ contact.name }</h2>
-            <h3>{ contact.lastName }</h3>
-            <h4>{ contact.email }</h4> 
-            <h5> { contact.conectad ? 'Connected' : 'Disconnected' }  </h5>
-        </div>
+        <tr className='fw-normal'>
+            <th>
+                <span className='ms-2'>{ contact.name } </span> 
+            </th>
+            <th>
+                <span className='ms-2'> { contact.lastName } </span> 
+            </th>
+            <td className='align-middle'>
+                <span > { contact.email } </span>
+            </td>
+            <td className='align-middle'>
+                <span >
+                    {statusBadge()}
+                </span>
+            </td>
+            <td className='align-middle'>
+                <i onClick={() => remove(contact)} className="bi bi-trash task-action" style={{color: 'red'}}></i>
+            </td>
+        </tr>
     );
 };
 

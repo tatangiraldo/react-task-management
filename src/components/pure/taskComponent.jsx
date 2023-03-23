@@ -13,7 +13,7 @@ import { LEVELS } from '../enums/levels.enums'
         }, [task]);
 
         /**
-         * Function that return a Badge depending of task's level
+         * Function that return a html Badge depending of task's level
          */
         function taskLevelBadge(){
             switch (task.level) {
@@ -53,6 +53,7 @@ import { LEVELS } from '../enums/levels.enums'
             if(task.completed){
                     // onClick={ () => complete(task) } ->asi se carga solo con el click
                     // onClick={ complete(task) } ->  Asi se ejecuta apenas cargue el componente
+                    //this method complete is in the parent component (task list)
                 return (<i onClick={() => complete(task)} className="bi bi-toggle-on task-action" style={{color: 'green'}}></i>) 
             }
             return (<i onClick={() => complete(task)} className="bi bi-toggle-off task-action "  style={{color: 'grey'}}></i>)
