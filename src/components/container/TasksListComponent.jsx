@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { LEVELS } from '../enums/levels.enums'
 import { TaskModel } from '../../models/task.model'
 import TaskComponent from '../pure/taskComponent'
-import TaskForm from '../pure/forms/taskForm';
+import TaskForm from '../pure/forms/taskForm'
+import '../../styles/task.scss'
+//import ‘../../styles/clock.scss’;
 
 function TasksListComponent() {
 
@@ -41,10 +43,34 @@ function TasksListComponent() {
         };
     }, [tasks]);
         
+    function completeTak(task){
+        //encuentra el indice de la tarea
+        const index = tasks.indexOf(task)
+        //crea un array temporal de tareas
+        const tempTasks = [...tasks]
+        //modifica la tarea en el array temporal
+        tempTasks[index].completed = !tempTasks[index].completed;
+        //actualiza el array de tareas original con la informacion modificada,
+        // y con ello la vista
+        setTasks(tempTasks);
 
-    const changeCompleted = (id) => {
-        //consolg
     }
+
+    function removeTask(task){
+        //encuentra el indice de la tarea
+        const index = tasks.indexOf(task)
+        //crea un array temporal de tareas
+        const tempTasks = [...tasks]
+        tempTasks.splice(index, 1)
+        setTasks(tempTasks)
+    }
+
+    function addTask(task){
+        const tempTasks = [...tasks]
+        tempTasks.push(task)
+        setTasks(tempTasks)
+    }
+
         
     return (
         <div>
@@ -53,7 +79,7 @@ function TasksListComponent() {
                     <div className='card-header p-3'>
                         <h5>Your Tasks: </h5>
                     </div>
-                    <div className='card-body' data-mdb-perfect-scrollbar={true} style={{position:'relative', height: '400px'}}>
+                    <div className='card-body' data-mdb-perfect-scrollbar={true} style={{position:'relative'}}>
                         <table>
                             <thead>
                                 <tr>
@@ -69,7 +95,9 @@ function TasksListComponent() {
                                         return (
                                             <TaskComponent 
                                                 key={index} 
-                                                task={task}   
+                                                task={task} 
+                                                complete={completeTak}  
+                                                remove={removeTask}
                                             />
                                         )
                                     })
@@ -80,7 +108,7 @@ function TasksListComponent() {
                     </div>
                 </div>                
             </div>
-            <TaskForm/>
+            <TaskForm add={addTask}/>
         </div>
     )
 }

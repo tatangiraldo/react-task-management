@@ -16,16 +16,16 @@ import TasksListComponent from './components/container/TasksListComponent';
 //importacion de varias funciones dentro de un component
 //si en el component 'father.jsx' se le pone export default,
 //se deberá importar sin {}
-import {Father} from './components/container/father';
+//import {Father} from './components/container/father';
 //import LifeCycleExample from './components/pure/lifeCycleExample';
 
 function App() {
   return (
     <div className="App">
 
-      <Father/>
+      {/* <Father/> */}
 
-      {/* <TasksListComponent/> */}
+      <TasksListComponent/>
       {/* <LifeCycleExample/> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" /> */}

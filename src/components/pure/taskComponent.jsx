@@ -3,8 +3,7 @@
 import { TaskModel } from '../../models/task.model';
 import { LEVELS } from '../enums/levels.enums'
  
- 
- const TaskComponent = ({task}) => {
+ const TaskComponent = ({task, complete, remove}) => {
 
         useEffect(() => {
             console.log('Created task')
@@ -52,9 +51,11 @@ import { LEVELS } from '../enums/levels.enums'
          */
         function taskInconManagement(){
             if(task.completed){
-                return (<i className="bi bi-toggle-on" style={{color: 'green'}}></i>) 
+                    // onClick={ () => complete(task) } ->asi se carga solo con el click
+                    // onClick={ complete(task) } ->  Asi se ejecuta apenas cargue el componente
+                return (<i onClick={() => complete(task)} className="bi bi-toggle-on task-action" style={{color: 'green'}}></i>) 
             }
-            return (<i className="bi bi-toggle-off"  style={{color: 'grey'}}></i>)
+            return (<i onClick={() => complete(task)} className="bi bi-toggle-off task-action "  style={{color: 'grey'}}></i>)
         }
 
     return (
@@ -73,7 +74,7 @@ import { LEVELS } from '../enums/levels.enums'
             <td className='align-middle'>
                 <span > 
                     {taskInconManagement()}
-                    <i className="bi bi-trash" style={{color: 'tomato'}}></i>
+                    <i onClick={() => remove(task)} className="bi bi-trash task-action" style={{color: 'tomato'}}></i>
                 </span> 
             </td>
         </tr>
@@ -82,7 +83,9 @@ import { LEVELS } from '../enums/levels.enums'
  
  
  TaskComponent.propTypes = {
-    task: PropTypes.instanceOf(TaskModel)
+    task: PropTypes.instanceOf(TaskModel).isRequired,
+    complete: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired
  };
  
  
